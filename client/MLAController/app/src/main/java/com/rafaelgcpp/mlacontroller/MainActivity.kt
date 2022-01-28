@@ -1,4 +1,4 @@
-package com.example.mlacontroller
+package com.rafaelgcpp.mlacontroller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

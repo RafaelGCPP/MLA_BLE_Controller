@@ -1,4 +1,4 @@
-package com.example.mlacontroller
+package com.rafaelgcpp.mlacontroller
 
 import org.junit.Test
 
