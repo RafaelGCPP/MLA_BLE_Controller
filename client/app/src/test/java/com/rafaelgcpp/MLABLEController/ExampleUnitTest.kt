@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.rafaelgcpp.MLABLEController
 
 import org.junit.Test
 

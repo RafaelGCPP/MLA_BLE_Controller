@@ -2,7 +2,7 @@ package com.rafaelgcpp.MLABLEController
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.myapplication.R
+import com.rafaelgcpp.MLABLEController.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
