@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainFragment">
+
+    <ImageButton
+        android:id="@+id/btn_reverse"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/reverse"
+        app:layout_constraintEnd_toStartOf="@+id/btn_back_step"
+        app:layout_constraintTop_toTopOf="@+id/btn_back_step"
+        app:srcCompat="@drawable/ic_rewind"
+        app:tint="@color/design_default_color_primary" />
+
+    <ImageButton
+        android:id="@+id/btn_back_step"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/one_step_back"
+        app:layout_constraintEnd_toStartOf="@+id/btn_stop"
+        app:layout_constraintTop_toTopOf="@+id/btn_stop"
+        app:srcCompat="@drawable/ic_play_reverse"
+        app:tint="@color/design_default_color_primary" />
+
+    <ImageButton
+        android:id="@+id/btn_stop"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:contentDescription="@string/stop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_stop"
+        app:tint="@color/design_default_color_primary"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageButton
+        android:id="@+id/btn_step"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/one_step_forward"
+        app:layout_constraintStart_toEndOf="@+id/btn_stop"
+        app:layout_constraintTop_toTopOf="@+id/btn_stop"
+        app:srcCompat="@drawable/ic_play"
+        app:tint="@color/design_default_color_primary" />
+
+    <ImageButton
+        android:id="@+id/btn_forward"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/forward"
+        app:layout_constraintStart_toEndOf="@+id/btn_step"
+        app:layout_constraintTop_toTopOf="@+id/btn_stop"
+        app:srcCompat="@drawable/ic_forward"
+        app:tint="@color/design_default_color_primary" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="133dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
