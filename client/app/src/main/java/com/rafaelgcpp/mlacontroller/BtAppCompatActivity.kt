@@ -15,8 +15,10 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.Settings
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 
 
 open class BtAppCompatActivity : AppCompatActivity() {
@@ -37,9 +39,6 @@ open class BtAppCompatActivity : AppCompatActivity() {
             return bluetoothAdapter.isEnabled
         }
 
-    @get:Synchronized
-    @set:Synchronized
-    private var isDialogShowing: Boolean = false
 
     private val enableBluetoothRequest =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -52,11 +51,13 @@ open class BtAppCompatActivity : AppCompatActivity() {
             }
         }
 
+    @Synchronized
     private fun askToEnableBluetooth() {
         val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
         enableBluetoothRequest.launch(enableBtIntent)
     }
 
+    @Synchronized
     private fun checkPermissions() {
         val missingPermissions = getMissingPermissions(requiredPermissions)
         if (missingPermissions.isNotEmpty()) {
@@ -139,6 +140,11 @@ open class BtAppCompatActivity : AppCompatActivity() {
         }
     }
 
+
+    @get:Synchronized
+    @set:Synchronized
+    private var isDialogShowing: Boolean = false
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -173,8 +179,8 @@ open class BtAppCompatActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         registerReceiver(mReceiver, IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED))
     }
 
@@ -198,7 +204,9 @@ open class BtAppCompatActivity : AppCompatActivity() {
     }
 
     open fun onBluetoothState(isEnabled: Boolean) {
-        return
+        if ((!isEnabled) && (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)))
+            Toast.makeText(this,"Bluetooth must be enabled for this application!", 10).show()
+            askToEnableBluetooth()
     }
 
 
