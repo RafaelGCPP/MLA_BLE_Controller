@@ -33,11 +33,12 @@
         android:id="@+id/btn_stop"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_stop"
         app:tint="@color/design_default_color_primary"
         tools:ignore="ImageContrastCheck" />
@@ -63,23 +64,5 @@
         app:layout_constraintTop_toTopOf="@+id/btn_stop"
         app:srcCompat="@drawable/ic_forward"
         app:tint="@color/design_default_color_primary" />
-
-    <EditText
-        android:id="@+id/editTextNumberDecimal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="199dp" />
-
-    <EditText
-        android:id="@+id/editTextNumberDecimal2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="133dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

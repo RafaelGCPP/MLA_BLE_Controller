@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MLA Controller</string>
+    <string name="reverse">reverse</string>
+    <string name="one_step_back">one step back</string>
+    <string name="stop">stop</string>
+    <string name="one_step_forward">one step forward</string>
+    <string name="forward">forward</string>
 </resources>

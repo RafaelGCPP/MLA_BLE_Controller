@@ -1,10 +1,10 @@
 package com.rafaelgcpp.mlacontroller
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.rafaelgcpp.mlacontroller.ui.main.MainFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BtAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,5 +14,14 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, MainFragment.newInstance())
                 .commitNow()
         }
+
+
+
+        setInitBluetoothHandler { btManager ->
+            Log.d("Test", "initBluetoothHandler called")
+            Log.d("Test", btManager.toString())
+        }
     }
+
+
 }
