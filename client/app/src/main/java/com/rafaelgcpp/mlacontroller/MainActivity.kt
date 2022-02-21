@@ -1,27 +1,30 @@
 package com.rafaelgcpp.mlacontroller
 
 import android.os.Bundle
-import android.util.Log
-import com.rafaelgcpp.mlacontroller.ui.main.MainFragment
+import androidx.activity.viewModels
+import com.rafaelgcpp.mlacontroller.bluetooth.BtAppCompatActivity
+import com.rafaelgcpp.mlacontroller.ui.device.DeviceFragment
+import com.rafaelgcpp.mlacontroller.viewmodel.MainViewModel
+import timber.log.Timber
+
 
 class MainActivity : BtAppCompatActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, DeviceFragment.newInstance())
                 .commitNow()
         }
 
-
-
         setInitBluetoothHandler { btManager ->
-            Log.d("Test", "initBluetoothHandler called")
-            Log.d("Test", btManager.toString())
+            Timber.i("btManager ==> $btManager")
         }
     }
-
-
 }
+
+

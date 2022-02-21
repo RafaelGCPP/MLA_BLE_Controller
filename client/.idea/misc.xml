@@ -5,12 +5,14 @@
       <map>
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/drawable-anydpi-v26/ic_launcher_background.xml" value="0.295" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/drawable-anydpi-v26/ic_launcher_foreground.xml" value="0.257" />
+        <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/drawable/ic_delete.xml" value="0.138" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1905" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/drawable/ic_next.xml" value="0.1905" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/layout/fragment_device.xml" value="0.1859375" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/layout/fragment_device_list.xml" value="0.3052536231884058" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/layout/main_activity.xml" value="0.18229166666666666" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/layout/main_fragment.xml" value="0.25" />
+        <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/menu/scan_menu.xml" value="0.35833333333333334" />
         <entry key="..\:/work/Ham/MLA_BLE_Controller/client/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.257" />
       </map>
     </option>

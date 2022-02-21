@@ -1,7 +1,6 @@
-package com.rafaelgcpp.mlacontroller
+package com.rafaelgcpp.mlacontroller.bluetooth
 
 import android.Manifest
-import android.app.AlertDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
 import android.content.BroadcastReceiver
@@ -12,20 +11,19 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.provider.Settings
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import timber.log.Timber
 
 
 open class BtAppCompatActivity : AppCompatActivity() {
 
-    private val _bluetoothManager by lazy {
-        getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
-    }
+    private lateinit var _bluetoothManager: BluetoothManager
+
 
     private val bluetoothManager: BluetoothManager
         get() = _bluetoothManager
@@ -107,7 +105,7 @@ open class BtAppCompatActivity : AppCompatActivity() {
 
     private fun checkLocationServices(): Boolean {
         return if (!areLocationServicesEnabled()) {
-            AlertDialog.Builder(this@BtAppCompatActivity)
+            MaterialAlertDialogBuilder(this@BtAppCompatActivity)
                 .setTitle("Location services are not enabled")
                 .setMessage("Scanning for Bluetooth peripherals requires locations services to be enabled.") // Want to enable?
                 .setPositiveButton("Enable") { dialogInterface, _ ->
@@ -164,7 +162,7 @@ open class BtAppCompatActivity : AppCompatActivity() {
             checkIfLocationIsNeeded()
         } else {
             if (!isDialogShowing) {
-                AlertDialog.Builder(this)
+                MaterialAlertDialogBuilder(this)
                     .setTitle("Location permission is required for scanning Bluetooth peripherals")
                     .setMessage("Please grant permissions")
                     .setPositiveButton("Retry") { dialogInterface, _ ->
@@ -181,6 +179,9 @@ open class BtAppCompatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        _bluetoothManager =
+            applicationContext.getSystemService(BLUETOOTH_SERVICE) as BluetoothManager
+
         registerReceiver(mReceiver, IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED))
     }
 
@@ -194,7 +195,7 @@ open class BtAppCompatActivity : AppCompatActivity() {
                 checkPermissions()
             }
         } else {
-            Log.e("Bluetooth Initializer", "This device has no Bluetooth hardware")
+            Timber.e("This device has no Bluetooth hardware")
         }
     }
 
@@ -205,8 +206,12 @@ open class BtAppCompatActivity : AppCompatActivity() {
 
     open fun onBluetoothState(isEnabled: Boolean) {
         if ((!isEnabled) && (lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)))
-            Toast.makeText(this,"Bluetooth must be enabled for this application!", 10).show()
-            askToEnableBluetooth()
+            Toast.makeText(
+                this,
+                "Bluetooth must be enabled for this application!",
+                Toast.LENGTH_LONG
+            ).show()
+        askToEnableBluetooth()
     }
 
 
