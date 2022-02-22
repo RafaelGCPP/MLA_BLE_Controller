@@ -14,13 +14,15 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.rafaelgcpp.mlacontroller.R
 import timber.log.Timber
 
 
-open class BtAppCompatActivity : AppCompatActivity() {
+open class BtAppCompatActivity (@LayoutRes layoutId:Int): AppCompatActivity(layoutId) {
 
     private lateinit var _bluetoothManager: BluetoothManager
 

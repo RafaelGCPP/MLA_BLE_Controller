@@ -1,25 +1,35 @@
 package com.rafaelgcpp.mlacontroller
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.rafaelgcpp.mlacontroller.bluetooth.BtAppCompatActivity
-import com.rafaelgcpp.mlacontroller.ui.device.DeviceFragment
-import com.rafaelgcpp.mlacontroller.viewmodel.MainViewModel
 import timber.log.Timber
 
 
-class MainActivity : BtAppCompatActivity() {
+class MainActivity : BtAppCompatActivity(R.layout.main_activity) {
 
-    private val viewModel: MainViewModel by viewModels()
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, DeviceFragment.newInstance())
-                .commitNow()
-        }
+
+        // Retrieve NavController from the NavHostFragment
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.container) as NavHostFragment
+        navController = navHostFragment.navController
+
+
+        val appBarConfiguration = AppBarConfiguration
+            .Builder(
+                R.id.deviceFragment,
+                R.id.mainFragment)
+            .build()
+
+        // Set up the action bar for use with the NavController
+        setupActionBarWithNavController(navController,appBarConfiguration)
 
         setInitBluetoothHandler { btManager ->
             Timber.i("btManager ==> $btManager")

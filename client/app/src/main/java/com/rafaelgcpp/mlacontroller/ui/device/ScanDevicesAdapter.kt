@@ -1,7 +1,7 @@
 package com.rafaelgcpp.mlacontroller.ui.device
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -49,14 +49,17 @@ class ScanItemViewBinder(
     private val binding: FragmentDeviceBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    private val context: Context = binding.root.context
+
     fun bind(
         advertisement: Advertisement,
         listener: (Advertisement) -> Unit
     ) = with(binding) {
-        deviceName.text = advertisement.name ?: "<unknown>"
+        deviceName.text =
+            advertisement.name ?: context.getString(android.R.string.unknownName)
         macAddress.text = advertisement.address
-        rssi.text = Resources.getSystem()
-            .getString(R.string.rssi, advertisement.rssi) //"${advertisement.rssi} dBm"
+        rssi.text = context
+            .getString(R.string.rssi, advertisement.rssi.toString())
 
         root.setOnClickListener { listener.invoke(advertisement) }
     }

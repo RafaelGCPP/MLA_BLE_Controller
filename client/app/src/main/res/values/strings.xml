@@ -7,5 +7,7 @@
     <string name="forward">forward</string>
     <string name="start_scan">Start scan</string>
     <string name="stop_scan">Stop Scan</string>
-    <string name="rssi">%1$d dBm</string>
+    <string name="rssi">%1$s dBm</string>
+    <string name="scan_controllers">Scan controllers</string>
+    <string name="mla_control">MLA Control</string>
 </resources>

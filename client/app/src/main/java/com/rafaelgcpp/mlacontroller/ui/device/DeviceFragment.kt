@@ -5,8 +5,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.juul.kable.Advertisement
 import com.rafaelgcpp.mlacontroller.R
@@ -21,19 +23,11 @@ import timber.log.Timber
  */
 class DeviceFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = DeviceFragment()
-    }
-
     private lateinit var scanAdapter: ScanDevicesAdapter
     private val viewModel: MainViewModel by activityViewModels()
     private var snackbar: Snackbar? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,13 +35,23 @@ class DeviceFragment : Fragment() {
     ): View? {
 
         val listener = { advertisement: Advertisement ->
-            viewModel.stopScan()
-            Timber.i(advertisement.toString())
-            //val intent = SensorActivityIntent(
-            //    context = this@ScanActivity,
-            //    macAddress = advertisement.address
-            //)
-            //startActivity(intent)
+            Timber.i("Clicked $advertisement")
+            MaterialAlertDialogBuilder(requireContext())
+                .setMessage("Connect to ${advertisement.name}")
+                .setPositiveButton(getString(android.R.string.ok)) { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                    viewModel.stopScan()
+                    Timber.i("Connecting to $advertisement")
+                    val action =
+                        DeviceFragmentDirections.actionDeviceFragmentToMainFragment(advertisement.address)
+                    findNavController().navigate(action)
+                }
+                .setNegativeButton(getString(android.R.string.cancel)) { dialogInterface, _ ->
+                    dialogInterface.dismiss()
+                    Timber.i("Cancelled")
+                }
+                .show()
+                .create()
         }
         scanAdapter = ScanDevicesAdapter(listener).apply {
             setHasStableIds(true)
