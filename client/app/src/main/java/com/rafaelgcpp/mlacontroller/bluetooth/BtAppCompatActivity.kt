@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.rafaelgcpp.mlacontroller.bluetooth
 
 import android.Manifest
@@ -18,7 +20,6 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.rafaelgcpp.mlacontroller.R
 import timber.log.Timber
 
 

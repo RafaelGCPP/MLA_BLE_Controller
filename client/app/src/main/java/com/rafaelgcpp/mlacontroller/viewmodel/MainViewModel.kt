@@ -1,10 +1,8 @@
 package com.rafaelgcpp.mlacontroller.viewmodel
 
-import android.bluetooth.le.ScanSettings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.juul.kable.Advertisement
-import com.juul.kable.ObsoleteKableApi
 import com.juul.kable.Scanner
 import com.juul.kable.logs.Logging
 import com.juul.kable.logs.SystemLogEngine

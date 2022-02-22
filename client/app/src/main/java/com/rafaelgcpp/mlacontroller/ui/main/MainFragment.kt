@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.rafaelgcpp.mlacontroller.ui.main
 
 import android.os.Bundle
@@ -11,12 +13,7 @@ import com.rafaelgcpp.mlacontroller.R
 
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private val viewModel: MainViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +23,4 @@ class MainFragment : Fragment() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 }

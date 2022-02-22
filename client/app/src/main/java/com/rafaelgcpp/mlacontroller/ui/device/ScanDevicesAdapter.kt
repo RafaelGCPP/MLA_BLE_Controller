@@ -49,12 +49,12 @@ class ScanItemViewBinder(
     private val binding: FragmentDeviceBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val context: Context = binding.root.context
 
     fun bind(
         advertisement: Advertisement,
         listener: (Advertisement) -> Unit
     ) = with(binding) {
+        val context: Context = root.context
         deviceName.text =
             advertisement.name ?: context.getString(android.R.string.unknownName)
         macAddress.text = advertisement.address
